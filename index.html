@@ -5,26 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table border="1px solid black">
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Id</td>
-                <td>Name Type</td>
-                <td>Rec Class</td>
-                <td>Mass(g)</td>
-                <td>Fall</td>
-                <td>Year</td>
-                <td>Latitude</td>
-                <td>Longitude</td>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            
-        </tbody>
-    </table>
+    <div id="mainContainer">
+        <div id="header">
+            <h2>Meteorite Explorer</h2>
+        </div>
+        <div id="searchField">
+            <input>
+            <button>SEARCH</button>
+        </div>
+        <div id="table">
+            <table border="1px solid black">
+                <thead>
+                    <tr id="thead">
+                        <td>Name</td>
+                        <td>Id</td>
+                        <td>Name Type</td>
+                        <td>Rec Class</td>
+                        <td>Mass(g)</td>
+                        <td>Fall</td>
+                        <td>Year</td>
+                        <td>Latitude</td>
+                        <td>Longitude</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

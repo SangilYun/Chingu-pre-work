@@ -1,0 +1,32 @@
+body{
+    margin:0;
+}
+
+#header{
+    background: #3e5d91;
+}
+
+#mainContainer{
+    background: #0f2549;
+
+}
+table{
+    border-collapse: collapse;
+}
+#thead{
+    background: #f4c542;
+}
+
+#tbody{
+    background: white;
+}
+
+#mainContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#searchField{
+    background: white;
+}
