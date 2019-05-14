@@ -15,46 +15,30 @@ function deleteAllChildren(tag){
 }
 
 function addContents(data){
+    let getColumnNames = Array.from(document.querySelectorAll('[data-type]'));
     let tr = document.createElement('tr');
-    let td;
-    td = document.createElement('td');
-    td.textContent = data.name;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
-    td.textContent = data.id;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
-    td.textContent = data.nametype;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
-    td.textContent = data.recclass;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
-    td.textContent = data.mass;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
-    td.textContent = data.fall;
-    tr.appendChild(td);
-
-    td = document.createElement('td');
+    getColumnNames.map(each=>{
+        let key = each.dataset.type;
+        let td = document.createElement('td');
+        td.textContent = data[key];
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+    });
+    //year
+    let td = document.createElement('td');
     td.textContent = data.year.slice(0,4);
     tr.appendChild(td);
 
+    //latitude
     td = document.createElement('td');
     td.textContent = data.geolocation.latitude;
     tr.appendChild(td);
 
+    //longitude
     td = document.createElement('td');
     td.textContent = data.geolocation.longitude;
     tr.appendChild(td);
 
-    console.log(tbody);
-    tbody.appendChild(tr);
-
 }
+
 let tbody = document.querySelector('#tbody');
