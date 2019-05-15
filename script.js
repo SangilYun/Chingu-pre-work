@@ -1,16 +1,21 @@
-fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
-.then(resp => resp.json())
-.then(data => {
-    for(let i=0; i<20; i++){
-        addContents(data[i]);
-    }
-});
+function loadingData(searchKeyword){
+    fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
+    .then(resp => resp.json())
+    .then(data => {
+        deleteAllChildren(tbody);
+        for(let i=0; i<20; i++){
+            if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
+                addContents(data[i]);
+            }
+        }
+    });
+}
 
 function deleteAllChildren(tag){
     var child = tag.lastElementChild;  
         while (child) { 
-            e.removeChild(child); 
-            child = e.lastElementChild; 
+            tag.removeChild(child); 
+            child = tag.lastElementChild; 
         } 
 }
 
@@ -42,3 +47,5 @@ function addContents(data){
 }
 
 let tbody = document.querySelector('#tbody');
+loadingData("");
+document.querySelector('button').addEventListener('click', ()=>loadingData(document.querySelector('input').value))

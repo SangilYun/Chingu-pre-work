@@ -1,15 +1,14 @@
 body{
     margin:0;
+    background: #0f2549;
 }
 
 #header{
     background: #3e5d91;
+    width:100%;
+    text-align: center;
 }
 
-#mainContainer{
-    background: #0f2549;
-
-}
 table{
     border-collapse: collapse;
 }
@@ -29,4 +28,5 @@ table{
 
 #searchField{
     background: white;
+    margin:10px;
 }
