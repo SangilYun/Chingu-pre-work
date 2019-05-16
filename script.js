@@ -3,7 +3,7 @@ function loadingData(searchKeyword){
     .then(resp => resp.json())
     .then(data => {
         deleteAllChildren(tbody);
-        for(let i=0; i<20; i++){
+        for(let i=0; i<100; i++){
             if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
                 addContents(data[i]);
             }
@@ -31,20 +31,39 @@ function addContents(data){
     });
     //year
     let td = document.createElement('td');
-    td.textContent = data.year.slice(0,4);
+    if(data.year){
+        td.textContent = data.year.slice(0,4);
+    }
     tr.appendChild(td);
 
     //latitude
     td = document.createElement('td');
-    td.textContent = data.geolocation.latitude;
+    if(data.geolocation){
+        td.textContent = data.geolocation.latitude;
+    }
     tr.appendChild(td);
 
     //longitude
     td = document.createElement('td');
-    td.textContent = data.geolocation.longitude;
+    if(data.geolocation){
+        td.textContent = data.geolocation.longitude;
+    }
     tr.appendChild(td);
 
 }
+
+window.onscroll = function() {
+    var d = document.documentElement;
+    var offset = d.scrollTop + window.innerHeight;
+    var height = d.offsetHeight;
+  
+    console.log('offset = ' + offset);
+    console.log('height = ' + height);
+  
+    if (offset === height) {
+      console.log('At the bottom');
+    }
+  };
 
 let tbody = document.querySelector('#tbody');
 loadingData("");
