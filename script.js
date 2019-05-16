@@ -11,6 +11,16 @@ function loadingData(searchKeyword){
     });
 }
 
+function loadingData(){
+    fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
+    .then(resp => resp.json())
+    .then(data => {
+        for(let i=0; i<100; i++){
+            addContents(data[i]);
+        }
+    });
+}
+
 function deleteAllChildren(tag){
     var child = tag.lastElementChild;  
         while (child) { 
@@ -62,6 +72,7 @@ window.onscroll = function() {
   
     if (offset === height) {
       console.log('At the bottom');
+      loadingData();
     }
   };
 
