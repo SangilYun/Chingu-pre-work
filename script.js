@@ -64,6 +64,9 @@ function addContents(data){
 
 }
 
+//It should load data according to search condition
+//now it adds the same result .
+
 const scrollableDiv = document.querySelector('#table');
 scrollableDiv.onscroll = function() {
     
