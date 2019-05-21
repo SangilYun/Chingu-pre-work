@@ -1,6 +1,7 @@
-body{
+html,body{
     margin:0;
     background: #0f2549;
+    height:100%;
 }
 
 #header{
@@ -9,21 +10,31 @@ body{
     text-align: center;
 }
 
+#table{
+    height: 80%;
+    overflow: scroll;
+}
 table{
     border-collapse: collapse;
 }
-#thead{
+
+thead th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 0;
     background: #f4c542;
 }
 
+
 #tbody{
-    background: white;
+    background: white;   
 }
 
 #mainContainer{
     display:flex;
     flex-direction: column;
     align-items: center;
+    height:100%;
 }
 
 #searchField{
