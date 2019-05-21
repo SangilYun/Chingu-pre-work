@@ -2,16 +2,18 @@ function loadingData(searchKeyword){
     fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
     .then(resp => resp.json())
     .then(data => {
+        console.log('deleted!');
         deleteAllChildren(tbody);
         for(let i=0; i<100; i++){
             if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
                 addContents(data[i]);
             }
         }
-    });
+    })
+    .catch(err=>console.log('err',err));
 }
 
-function loadingData(){
+function loadingDataWithoutInput(){
     fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
     .then(resp => resp.json())
     .then(data => {
@@ -62,20 +64,21 @@ function addContents(data){
 
 }
 
-window.onscroll = function() {
-    var d = document.documentElement;
-    var offset = d.scrollTop + window.innerHeight;
-    var height = d.offsetHeight;
-  
-    console.log('offset = ' + offset);
-    console.log('height = ' + height);
+const scrollableDiv = document.querySelector('#table');
+scrollableDiv.onscroll = function() {
+    
+    var offset = scrollableDiv.scrollHeight- scrollableDiv.scrollTop;
+    var height = scrollableDiv.clientHeight;
   
     if (offset === height) {
-      console.log('At the bottom');
-      loadingData();
+        loadingDataWithoutInput();
     }
   };
 
 let tbody = document.querySelector('#tbody');
 loadingData("");
-document.querySelector('button').addEventListener('click', ()=>loadingData(document.querySelector('input').value))
+document.querySelector('button').addEventListener('click', ()=>{
+    console.log('search field', document.querySelector('input').value);
+    loadingData(document.querySelector('input').value)
+
+})
