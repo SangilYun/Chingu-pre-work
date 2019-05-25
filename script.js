@@ -1,26 +1,34 @@
+//global variables
+const dataPerPage = 100;
+let currPage =0;
+let tbody = document.querySelector('#tbody');
+let searchInput="";
+
+
+loadingData(searchInput); //load initial data
+document.querySelector('button').addEventListener('click', ()=>{
+    initialize();
+    searchInput = document.querySelector('input').value;
+    loadingData(searchInput)
+})
+
+function initialize(){
+    currPage=0;
+    deleteAllChildren(tbody);
+}
+
 function loadingData(searchKeyword){
     fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
     .then(resp => resp.json())
     .then(data => {
-        console.log('deleted!');
-        deleteAllChildren(tbody);
-        for(let i=0; i<100; i++){
+        for(let i=currPage; i<currPage+dataPerPage; i++){
             if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
                 addContents(data[i]);
             }
         }
+        currPage += dataPerPage;
     })
     .catch(err=>console.log('err',err));
-}
-
-function loadingDataWithoutInput(){
-    fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
-    .then(resp => resp.json())
-    .then(data => {
-        for(let i=0; i<100; i++){
-            addContents(data[i]);
-        }
-    });
 }
 
 function deleteAllChildren(tag){
@@ -64,9 +72,6 @@ function addContents(data){
 
 }
 
-//It should load data according to search condition
-//now it adds the same result .
-
 const scrollableDiv = document.querySelector('#table');
 scrollableDiv.onscroll = function() {
     
@@ -74,14 +79,7 @@ scrollableDiv.onscroll = function() {
     var height = scrollableDiv.clientHeight;
   
     if (offset === height) {
-        loadingDataWithoutInput();
+        loadingData(searchInput);
     }
-  };
+};
 
-let tbody = document.querySelector('#tbody');
-loadingData("");
-document.querySelector('button').addEventListener('click', ()=>{
-    console.log('search field', document.querySelector('input').value);
-    loadingData(document.querySelector('input').value)
-
-})
