@@ -26,6 +26,9 @@ thead th {
     background: #f4c542;
 }
 
+td{
+    text-align: center;
+}
 #tbody{
     background: white;   
 }

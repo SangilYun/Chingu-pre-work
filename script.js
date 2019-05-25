@@ -3,17 +3,36 @@ const dataPerPage = 100;
 let currPage =0;
 let tbody = document.querySelector('#tbody');
 let searchInput="";
+let searchResult = false;
 
 
 loadingData(searchInput); //load initial data
+
 document.querySelector('button').addEventListener('click', ()=>{
     initialize();
     searchInput = document.querySelector('input').value;
     loadingData(searchInput)
 })
 
+//search input enter listener----------
+var input = document.getElementById("searchInput");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("searchButton").click();
+  }
+});
+//---------------------------------------
+
+
 function initialize(){
     currPage=0;
+    searchResult=false;
     deleteAllChildren(tbody);
 }
 
@@ -24,7 +43,17 @@ function loadingData(searchKeyword){
         for(let i=currPage; i<currPage+dataPerPage; i++){
             if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
                 addContents(data[i]);
+                searchResult=true;
             }
+        }
+        if(!searchResult){
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.textContent='no search result'
+            td.setAttribute('colspan',9)
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+            return ;
         }
         currPage += dataPerPage;
     })
