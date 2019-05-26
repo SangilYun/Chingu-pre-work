@@ -37,15 +37,27 @@ function initialize(){
 }
 
 function loadingData(searchKeyword){
+
     fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
-    .then(resp => resp.json())
+    .then(resp => {
+        return resp.json()
+    })
     .then(data => {
-        for(let i=currPage; i<currPage+dataPerPage; i++){
-            if(data[i].name.toLowerCase().includes(searchKeyword.toLowerCase())){
-                addContents(data[i]);
-                searchResult=true;
+        
+            let filtered = data.filter(each=>{
+                if(each.name.toLowerCase().includes(searchKeyword.toLowerCase())){
+                    return each;
+                }
+            })
+
+            if(filtered.length){
+                searchResult = true;
             }
-        }
+
+            for(let i=0; i<filtered.length; i++){
+                addContents(filtered[i]);
+            }
+
         if(!searchResult){
             let tr = document.createElement('tr');
             let td = document.createElement('td');
@@ -55,7 +67,7 @@ function loadingData(searchKeyword){
             tbody.appendChild(tr);
             return ;
         }
-        currPage += dataPerPage;
+        // currPage += dataPerPage;
     })
     .catch(err=>console.log('err',err));
 }
@@ -101,14 +113,21 @@ function addContents(data){
 
 }
 
-const scrollableDiv = document.querySelector('#table');
-scrollableDiv.onscroll = function() {
+// const scrollableDiv = document.querySelector('#table');
+// scrollableDiv.onscroll = function() {
     
-    var offset = scrollableDiv.scrollHeight- scrollableDiv.scrollTop;
-    var height = scrollableDiv.clientHeight;
+//     var offset = scrollableDiv.scrollHeight- scrollableDiv.scrollTop;
+//     var height = scrollableDiv.clientHeight;
   
-    if (offset === height) {
-        loadingData(searchInput);
-    }
-};
+//     if (offset === height) {
+//         loadingData(searchInput);
+//     }
+// };
 
+
+
+/*
+loading screen.
+css spinner
+
+*/
