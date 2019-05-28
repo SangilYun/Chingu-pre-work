@@ -1,0 +1,52 @@
+html,body{
+    margin:0;
+    background: #0f2549;
+    height:100%;
+}
+
+#root{
+    height:100%;
+}
+
+#header{
+    background: #3e5d91;
+    width:100%;
+    text-align: center;
+}
+
+#table{
+    height: auto;
+    overflow-y: scroll;
+
+}
+
+table{
+    border-collapse: collapse;
+    
+}
+
+thead th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 0;
+    background: #f4c542;
+}
+
+td{
+    text-align: center;
+}
+#tbody{
+    background: white;   
+}
+
+#mainContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height:95%;
+}
+
+#searchField{
+    background: white;
+    margin:10px;
+}
