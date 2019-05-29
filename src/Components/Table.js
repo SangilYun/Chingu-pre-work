@@ -1,5 +1,21 @@
 import React from 'react';
 
+const TableRow = ({each}) =>{
+    return (
+        <tr>
+            <td>{each.name}</td>
+            <td>{each.id}</td>
+            <td>{each.nametype}</td>
+            <td>{each.recclass}</td>
+            <td>{each.mass}</td>
+            <td>{each.fall}</td>
+            <td>{each.year}</td>
+            <td></td>
+            <td></td>
+        </tr>
+    )
+}
+
 const Table =({getData})=>{
     
     return(
@@ -22,17 +38,7 @@ const Table =({getData})=>{
                     {
                         getData.map(each=>{
                             return (
-                            <tr key={each.id}>
-                                <td>{each.name}</td>
-                                <td>{each.id}</td>
-                                <td>{each.nametype}</td>
-                                <td>{each.recclass}</td>
-                                <td>{each.mass}</td>
-                                <td>{each.fall}</td>
-                                <td>{each.year}</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <TableRow key={each.id} each={each}></TableRow>
                             )
                         })
                     }

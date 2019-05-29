@@ -32,17 +32,19 @@ class App extends React.Component{
   }
 
   getSearchResult=()=>{
-    
+
     let data = this.state.meteoriteData;
     let keyword = this.state.searchInput;
 
-    let filtered = data.filter(each=>{
-      if(each.name.toLowerCase().includes(keyword.toLowerCase())){
-        return each;
-      }
-    })
+    let filtered = data.filter(each=>each.name.toLowerCase().includes(keyword.toLowerCase()))
     
     this.setState({filtered});
+  }
+
+  enterHandler=(event)=>{
+    if(event.key ==="Enter"){
+      this.getSearchResult();
+    }
   }
 
   render(){
@@ -52,7 +54,7 @@ class App extends React.Component{
             <h2>Meteorite Explorer</h2>
           </div>
           
-          <SearchField searchInputHandler = {this.setSearchInput} searchResultHandler={this.getSearchResult}></SearchField>
+          <SearchField searchInputHandler = {this.setSearchInput} searchResultHandler={this.getSearchResult} enterListener = {this.enterHandler}></SearchField>
           
           <Table getData={this.state.filtered}></Table>
           </div>
